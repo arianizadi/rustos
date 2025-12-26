@@ -6,6 +6,7 @@ SECTIONS
   . = 0x80000000;
 
   .text : {
+    KEEP(*(.text.entry))
     *(.text .text.*)
     . = ALIGN(0x1000);
   }
@@ -29,6 +30,12 @@ SECTIONS
     *(.sbss .sbss.*) /* do not need to distinguish this from .bss */
     . = ALIGN(16);
     *(.bss .bss.*)
+  }
+
+  .stack : {
+    . = ALIGN(16);
+    stack0 = .;
+    . += 4096 * 8;
   }
 
   PROVIDE(end = .);
