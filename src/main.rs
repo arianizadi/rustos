@@ -1,22 +1,21 @@
 #![no_std]
 #![no_main]
 
-use core::{arch::global_asm, panic::PanicInfo};
+mod panic;
+mod uart;
+
+use core::arch::global_asm;
 
 global_asm!(include_str!("entry.S"));
 
-#[panic_handler]
-fn panic(_info: &PanicInfo) -> ! {
-    loop {}
-}
-
 #[unsafe(no_mangle)]
 pub extern "C" fn start() -> ! {
-    let uart_base_address = 0x1000_0000 as *mut u8;
-
-    unsafe {
-        uart_base_address.add(0).write_volatile(b'a');
-        uart_base_address.add(0).write_volatile(b'\n');
-    }
+    uart::init();
+    uart::putc(b'H');
+    uart::putc(b'e');
+    uart::putc(b'l');
+    uart::putc(b'l');
+    uart::putc(b'o');
+    uart::putc(b'\n');
     loop {}
 }

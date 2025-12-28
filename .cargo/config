@@ -6,3 +6,4 @@ rustflags = [
     "-C", "link-arg=-Tlinker.ld",
 ]
 
+runner = "qemu-system-riscv64 -machine virt -bios none -nographic -serial mon:stdio -kernel"
