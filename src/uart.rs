@@ -9,6 +9,12 @@ pub fn init() {
     }
 }
 
+pub fn print_str(s: &str) {
+    for c in s.bytes() {
+        putc(c);
+    }
+}
+
 pub fn putc(c: u8) {
     unsafe {
         /*
