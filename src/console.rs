@@ -1,3 +1,4 @@
+/// Console
 use crate::uart::UartWriter;
 use core::fmt::{self, Write};
 

@@ -12,4 +12,3 @@ cc = "1.0"
 name = "rustos"
 test = false
 bench = false
-
